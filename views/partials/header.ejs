@@ -1,0 +1,73 @@
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+
+<div class="header-container">
+  <div class="title-container">
+    <div class="title"> PEST AND DISEASE MANAGEMENT SYSTEM </div>
+
+    <%if( email || isAdmin){%>
+      <a class="logout-button" href="/logout">Logout</a>
+    <%}%>
+  </div>
+  
+  <nav class="nav-header-container">
+    <ul class="header-content">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contact">Contact</a>
+      </li>
+
+    <%if( isAdmin ){%>
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/crop-form">Add crop</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/view-users">View users</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="red" href="/logout">Logout</a>
+      </li>
+    <%}else{%>
+      <%if( email ){%>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="red" href="/logout">Logout</a>
+        </li>
+      <%}else{%>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="nav-link" href="/admin-login">Admin login</a>
+        </li>
+      <%}%>
+    <%}%>
+    </ul>
+      
+    <%if( isAdmin ){%>
+      <div class="welcome"> Welcome <span class="red"> Administrator </span></div>
+    <%}else if( email ){%>
+      <div class="welcome"> Welcome <span class="red"> <%= email %> </span></div>
+    <%}else{%>
+      <div class="welcome"> Welcome Guest</div>
+    <%}%>
+  </nav>
+</div>

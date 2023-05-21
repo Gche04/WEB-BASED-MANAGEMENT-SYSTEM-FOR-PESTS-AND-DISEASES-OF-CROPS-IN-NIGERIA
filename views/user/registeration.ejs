@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registeration</title>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <div class="form-container">
+        <div class="form-items-container">
+            <div class="form-title">New Account, please fill your details to be a member</div>
+            <p><%=alert%></p>
+            <form action="/register" method="post">
+                <input type="text" placeholder="First Name" name="first_name" required><br>
+                <input type="text" placeholder="Last Name" name="last_name" required><br>
+                <input type="text" placeholder="User Name" name="user_name" required><br>
+                <input type="email" placeholder="Email Address" name="email_address" required><br>
+                <input type="password" placeholder="Password" name="password"><br>
+                <input type="password" placeholder="Confirm Password" name="confirm_password"><br>
+                <button type="submit">Create Account</button>
+            </form>    
+        </div>
+    </div>
+</body>  
+</html>

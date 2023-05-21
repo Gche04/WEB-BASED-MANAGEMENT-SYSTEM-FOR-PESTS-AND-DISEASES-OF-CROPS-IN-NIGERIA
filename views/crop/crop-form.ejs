@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop-form</title>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <div class="form-container">
+        <div class="form-items-container">
+            <h4 class="crop-form-heading"> Enter crop details to add to database </h4>
+
+            <form class="form" id="crop-form" action="/crop-form" method="POST">
+                <label for="crop-com-name">Crop common name</label><br>
+                <input type="text" id="crop-com-name" name="crop_com_name"><br>
+        
+                <label for="crop-bot-name">Crop botanical name</label><br>
+                <input type="text" id="crop-bot-name" name="crop_bot_name"><br>
+        
+                <label for="crop-class">Crop class</label><br>
+                <select name="crop_class" id="crop-class">
+                    <option value="Carbohydrates">Carbohydrates</option>
+                    <option value="Proteins">Proteins</option>
+                    <option value="Fats">Fats</option>
+                    <option value="Vitamins">Vitamins</option>
+                    <option value="Minerals">Minerals</option>
+                    <option value="Dietary fibre">Dietary fibre</option>
+                    <option value="Water">Water</option>
+                </select><br><br>
+        
+                <div class="crop-disease">
+                    <p class="crop-form-subhead">crop disease field </p>
+        
+                    <label for="disease-com-name">Disease common name</label><br>
+                    <input type="text" id="disease-com-name" name="disease_com_name"><br>
+        
+                    <label for="disease-sci-name">Disease scientific name</label><br>
+                    <input type="text" id="disease-sci-name" name="disease_sci_name"><br>
+        
+                    <label for="disease-symptoms">Disease symptoms</label><br>
+                    <select name="disease_symptoms" id="disease-symptoms">
+                        <option value="Scabs">Scabs</option>
+                        <option value="Color">Color</option>
+                        <option value="Hypertrophy">Hypertrophy</option>
+                        <option value="Blight">Blight</option>
+                        <option value="Rust">Rust</option>
+                        <option value="Mildew">Mildew</option>
+                    </select><br><br>
+        
+                    <label for="disease-control">Disease control</label><br>
+                    <textarea id="disease-control" name="disease_control"></textarea><br>
+        
+                    <label for="disease-class">Disease class</label><br>
+                    <select name="disease_class" id="disease-class">
+                        <option value="Infectious">Infectious</option>
+                        <option value="Non-Infectious">Non-Infectious</option>
+                    </select><br><br>
+        
+                    <label for="disease-part">Disease part</label><br>
+                    <select name="disease_part" id="disease-part">
+                        <option value="Root Diseases">Root Diseases</option>
+                        <option value="Stem Diseases">Stem Diseases</option>
+                        <option value="FoliageDiseases">FoliageDiseases</option>
+                    </select><br><br>
+        
+                    <label for="disease-image">Disease image link</label><br>
+                    <input type="text" id="disease-image" name="disease_image"><br>
+                </div>
+        
+                <div class="crop-pest">
+                    <p class="crop-form-subhead" >crop pest field </p>
+        
+                    <label for="pest-com-name">Pest common name</label><br>
+                    <input type="text" id="pest-com-name" name="pest_com_name"><br>
+        
+                    <label for="pest-sci-name">Pest scientific name</label><br>
+                    <input type="text" id="pest-sci-name" name="pest_sci_name"><br>
+        
+                    <label for="pest-symp">Pest symptoms</label><br>
+                    <textarea id="pest-symp" name="pest_symp"></textarea><br>
+        
+                    <label for="pest-control">Pest control</label><br>
+                    <textarea id="pest-control" name="pest_control"></textarea><br>
+        
+                    <label for="pest-economic-imp">Pest economic importance</label><br>
+                    <textarea id="pest-economic-imp" name="pest_economic_imp"></textarea><br>
+        
+                    <label for="pest-class">Pest class</label><br>
+                    <select name="pest_class" id="pest-class">
+                        <option value="Biting and Chewing insects">Biting and Chewing insects</option>
+                        <option value="Boring insects">Boring insects</option>
+                        <option value="Piercing and Sucking insects">Piercing and Sucking insects</option>
+                    </select><br><br>
+        
+                    <label for="pest-image">Pest image link</label><br>
+                    <input type="text" id="pest-image" name="pest_image"><br>
+                </div>
+        
+                <br>
+                <label for="crop-area">Crop area</label><br>
+                <input type="text" id="crop-area" name="crop_area"><br>
+        
+                <label for="crop-part">Crop part</label><br>
+                <input type="text" id="crop-part" name="crop_part"><br>
+        
+                <label for="crop-uses">Crop uses</label><br>
+                <input type="text" id="crop-uses" name="crop_uses"><br>
+        
+                <label for="crop-image">Crop image link</label><br>
+                <input type="text" id="crop-image" name="crop_image"><br>
+        
+                <button type="submit">add crop</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+

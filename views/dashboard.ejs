@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+</head>
+<body>
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="dashboard">
+            <div class="dashboard-title"> dashboard </div>
+
+            <div id="/crop-search" class="dashboard-option">CROP</div>
+            <div id="/disease-search" class="dashboard-option">DISEASE</div>
+            <div id="/pest-search" class="dashboard-option">PEST</div>
+        </div>
+
+        <div class="dashboard-content">
+            <div id="form-div" class="form-div">
+        
+            </div>
+            
+            <div id="search-result" class="search-result">
+                <%if(result.resultFor == 'crops'){%>
+                    <div class="result-info"> Showing result for <span class="red"> <%= result.name %> </span></div>
+                    <p> Hover on image to view enlarge size </p>
+                    <table>
+                        <tr>
+                          <th>name</th>
+                          <th>bot. name</th>
+                          <th>class</th>
+                          <th>disease</th>
+                          <th>pest</th>
+                          <th>area</th>
+                          <th>part</th>
+                          <th>uses</th>
+                          <th>crop image</th>
+                        </tr>
+                        <tr>
+                          <td><%= result.name %></td>
+                          <td><%= result.botName %></td>
+                          <td><%= result.class %></td>
+                          <td><%= result.disease %></td>
+                          <td><%= result.pest %></td>
+                          <td><%= result.area %></td>
+                          <td><%= result.part %></td>
+                          <td><%= result.uses %></td>
+                          <td><img class="search-img" src= "<%= result.cropImage %>" alt="crop image"></td>
+                        </tr>
+                    </table>
+        
+                <%}else if(result.resultFor == 'disease'){%>
+                    <div class="result-info"> Showing result for <span class="red"> <%= result.name %> </span></div>
+                    <table>
+                        <tr>
+                          <th>name</th>
+                          <th>bot. name</th>
+                          <th>symptoms</th>
+                          <th>control</th>
+                          <th>disease class</th>
+                          <th>part</th>
+                          <th>crop affected</th>
+                          <th>normal crop image</th>
+                          <th>attacked crop image</th>
+                        </tr>
+                        <tr>
+                          <td><%= result.name %></td>
+                          <td><%= result.botName %></td>
+                          <td><%= result.symptoms %></td>
+                          <td><%= result.control %></td>
+                          <td><%= result.diseaseClass %></td>
+                          <td><%= result.part %></td>
+                          <td><%= result.cropAffected %></td>
+                          <td><img class="search-img" src= "<%= result.normalCropImage %>" alt="normal crop image"></td>
+                          <td><img class="search-img" src= "<%= result.AttackedCropImage %>" alt="attacked crop image"></td>
+                        </tr>
+                    </table>
+        
+                <%}else if(result.resultFor == 'pest'){%>
+                    <div class="result-info"> Showing result for <span class="red"> <%= result.pestCommonName %> </span></div>
+                    <table>
+                        <tr>
+                          <th>pest common name</th>
+                          <th>scientific name</th>
+                          <th>pest class</th>
+                          <th>crop affected</th>
+                          <th>symptoms</th>
+                          <th>management strategies</th>
+                          <th>economic importance</th>
+                          <th>normal crop image</th>
+                          <th>attacked crop image</th>
+                        </tr>
+                        <tr>
+                          <td><%= result.pestCommonName %></td>
+                          <td><%= result.scientificName %></td>
+                          <td><%= result.pestClass %></td>
+                          <td><%= result.cropAffected %></td>
+                          <td><%= result.symptoms %></td>
+                          <td><%= result.managementStrategies %></td>
+                          <td><%= result.economicImportance %></td>
+                          <td><img class="search-img" src= "<%= result.normalCropImage %>" alt="normal crop image"></td>
+                          <td><img class="search-img" src= "<%= result.AttackedCropImage %>" alt="attacked crop image"></td>
+                        </tr>
+                    </table>
+        
+                <%}else{%>
+                    <p><%= result.resultFor %></p>
+                <%}%>
+            </div>        
+        </div>
+    </div>
+
+    <script>
+        var formDiv = document.getElementById("form-div");
+        formDiv.appendChild(info("/crop-search"));
+        formDiv.appendChild(searchForm("/crop-search"));
+
+        document.getElementById("/crop-search").addEventListener("click", appendSearchForm, false);
+        document.getElementById("/disease-search").addEventListener("click", appendSearchForm, false);
+        document.getElementById("/pest-search").addEventListener("click", appendSearchForm, false);
+
+        function appendSearchForm(e) {
+            var action = e.target.id;
+            console.log(action);
+            var form = searchForm(action);
+
+            formDiv.innerHTML = '';
+            formDiv.appendChild(info(action));
+            formDiv.appendChild(form);
+        }
+
+        function searchForm(action) {
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", action);
+            form.setAttribute("class", "search-form");
+
+            var searchField = document.createElement("input");
+            searchField.setAttribute("type", "text");
+            searchField.setAttribute("name", "search");
+            searchField.setAttribute("id", "search");
+            searchField.setAttribute("placeholder", "search");
+            searchField.setAttribute("class", "search-input");
+
+            var submit = document.createElement("button");
+            submit.setAttribute("type", "submit");
+            submit.innerHTML = "Search";
+
+            form.append(searchField, submit);
+            return form;
+        }
+    
+        function info(info) {
+            var div = document.createElement("div");
+            div.setAttribute("class", "search-info")
+            var node;
+
+            if (info == "/crop-search") {
+                node = document.createTextNode("Crop");
+            }else if (info == "/disease-search") {
+                node = document.createTextNode("Check Disease");
+            }else if (info == "/pest-search") {
+                node = document.createTextNode("Check Pest");
+            }
+            div.appendChild(node);
+            return div;
+        }
+    </script>
+</body>
+</html>
